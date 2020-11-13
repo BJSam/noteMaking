@@ -13,10 +13,12 @@ export class FbserviceService {
   constructor(public Auth: AngularFireAuth, private db: AngularFirestore) {
     Auth.onAuthStateChanged(user => {
       this.user = user;
-      this.db.collection(this.user.uid)
+      if (user){
+      this.db.collection(user.uid)
       .valueChanges().subscribe((dt) => {
         this.fetchedNotes = dt;
       });
+     }
     });
   }
 
