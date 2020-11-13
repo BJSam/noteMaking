@@ -23,15 +23,16 @@ export class AddNotesComponent implements OnInit {
     timer: 3000,
     timerProgressBar: true,
     didOpen: (toast) => {
-      toast.addEventListener('mouseenter', Swal.stopTimer)
-      toast.addEventListener('mouseleave', Swal.resumeTimer)
+      toast.addEventListener('mouseenter', Swal.stopTimer);
+      toast.addEventListener('mouseleave', Swal.resumeTimer);
     }
-  })
+  });
   ngOnInit(): void {
   }
   addData = () => {
    if (this.form.valid && this.fb.user.uid != null){
-    return new Promise<any>((resolve, reject) => {
+    
+     return new Promise<any>((resolve, reject) => {
       this.firestore
           .collection(this.fb.user.uid)
           .add({
@@ -39,7 +40,7 @@ export class AddNotesComponent implements OnInit {
              date: new Date()
           }, )
           .then(res => {
-            this.form.enable();
+            console.log(res);
             Swal.close();
             this.Toast.fire({
   icon: 'success',
@@ -47,16 +48,16 @@ export class AddNotesComponent implements OnInit {
 });
             this.form.reset();
 
-          }, err => {reject(err); this.form.enable();Swal.close(); Swal.fire({icon:"error",title:"coudn't add notes"}) });
+          }, err => {reject(err);  Swal.close(); Swal.fire({icon: 'error', title: 'coudn\'t add notes'}); });
   });
    }
    else{
-     console.log(this.fb.user.uid)
+     console.log(this.fb.user.uid);
    }
   }
   onSubmit = () => {
     console.log({...this.form.value, date: new Date()});
-    this.form.disable();
+    
     Swal.fire({
       title: 'adding notes',
       text: 'Please wait',
