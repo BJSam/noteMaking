@@ -1,0 +1,17 @@
+<div class="main">
+    <div *ngFor="let item of fbs.fetchedNotes" class="card" style="width: 18rem;">
+        <div class="card-body">
+          <h5 class="card-title"><strong><u>{{item.title}}</u></strong></h5>
+          <p class="card-text">{{item.notes}}</p>
+          <p class="card-text"><small class="text-muted">{{getDate(item.date.seconds)}}</small></p>
+        </div>        
+      </div>
+</div>
+<div *ngIf="!fbs.user || !fbs.fetchedNotes" class="nocards">
+<div *ngIf="!fbs.user" style="margin: auto; text-align: center;" class="pleaselogin">
+<h1>Please login</h1>
+</div>
+<div *ngIf="!fbs.fetchedNotes && fbs.user" style="margin: auto; text-align: center;" class="NOcards">
+No Cards found
+</div>
+</div>

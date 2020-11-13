@@ -3,7 +3,17 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  firebase: {
+    apiKey: 'AIzaSyB0ykU5B9jf8HmfbnxfmQvp1Q5G3jm_nWo',
+    authDomain: 'notemakingangular.firebaseapp.com',
+    databaseURL: 'https://notemakingangular.firebaseio.com',
+    projectId: 'notemakingangular',
+    storageBucket: 'notemakingangular.appspot.com',
+    messagingSenderId: '106774245865',
+    appId: '1:106774245865:web:69c4e82eb6bc852bf01b78',
+    measurementId: 'G-3QXZJZ3EMN'
+  }
 };
 
 /*
