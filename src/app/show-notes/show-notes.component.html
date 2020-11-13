@@ -11,7 +11,7 @@
 <div *ngIf="!fbs.user" style="margin: auto; text-align: center;" class="pleaselogin">
 <h1 style="cursor: pointer;" (click)="fbs.LoginWithGooogle()">Please login with Google</h1>
 </div>
-<div *ngIf="fbs.user && fbs.fetchedNotes.length ===0" style="margin: auto; text-align: center;" class="NOcards">
-No Cards found
+<div *ngIf="fbs.user && fbs.fetchedNotes" style="margin: auto; text-align: center;" class="NOcards">
+<h1 *ngIf="fbs.fetchedNotes.length ===0">No Cards</h1>
 </div>
 </div>
