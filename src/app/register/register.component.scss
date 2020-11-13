@@ -1,0 +1,16 @@
+.card{    
+    margin: auto;
+    margin-top: 5em;
+    width: 18rem;
+    border-radius: 20px;
+    background-color: rgb(7, 194, 54);
+    .from{
+        width: 15rem;
+        margin: auto;
+        margin-top: 1em;
+        margin-bottom: 1em;
+        label{
+            color: #fff;
+        }
+    }
+}

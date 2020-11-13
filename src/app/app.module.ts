@@ -12,12 +12,18 @@ import { HeadderComponent } from './headder/headder.component';
 import { AddNotesComponent } from './add-notes/add-notes.component';
 import { ShowNotesComponent } from './show-notes/show-notes.component';
 import {ReactiveFormsModule} from '@angular/forms';
+import { RegisterComponent } from './register/register.component';
+import { LoginComponent } from './login/login.component';
+import { HomeComponent } from './home/home.component';
 @NgModule({
   declarations: [
     AppComponent,
     HeadderComponent,
     AddNotesComponent,
-    ShowNotesComponent
+    ShowNotesComponent,
+    RegisterComponent,
+    LoginComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
@@ -25,7 +31,8 @@ import {ReactiveFormsModule} from '@angular/forms';
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
     AngularFireAuthModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

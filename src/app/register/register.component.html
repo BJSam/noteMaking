@@ -1,0 +1,27 @@
+<div  class="card">
+    <div class="from">
+      <h2 style="color: #fff; font-weight: bold;">Register</h2>
+        <form class="Notesfrom" [formGroup]="formRegister" (ngSubmit)="onSubmit()" >
+            <div class="form-group">
+              <label for="exampleFormControlInput1">Name</label>
+              <input type="text" formControlName="Name" class="form-control" id="Name"   required placeholder="Jhon">
+             
+            </div>
+            <div class="form-group">
+                <label for="exampleFormControlInput1">Mail</label>
+                <input type="text" formControlName="Mail" class="form-control" id="Mail"   required placeholder="jhon@mail.com">
+               
+              </div>
+            <div class="form-group">
+              <label for="exampleFormControlTextarea1">Password</label>
+              <input type="password" formControlName="pass" class="form-control" #notesDetails placeholder="@myP@$$" required id="pass">
+            </div>
+            <div class="form-group">
+                <label for="exampleFormControlTextarea1">Re-enter Password</label>
+                <input type="text" formControlName="repass" class="form-control" #notesDetails placeholder="@myP@$$" required id="repass" >
+            </div>
+            <button class="btn btn-primary" [disabled]="!formRegister.valid" type="submit">Submit form</button>
+            <p (click)="this.route.navigate(['login'])" style="cursor: pointer; color: #fff;">Already registered? Login</p>
+          </form>
+    </div>
+</div>

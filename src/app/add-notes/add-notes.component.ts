@@ -67,4 +67,5 @@ export class AddNotesComponent implements OnInit {
     });
     this.addData();
   }
+  
 }

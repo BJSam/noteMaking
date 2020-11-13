@@ -1,0 +1,12 @@
+.options{
+    width: 50%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;    
+    margin: auto;
+    margin-top: 2em;
+    button: {
+    margin-right: 1em;
+    }
+}

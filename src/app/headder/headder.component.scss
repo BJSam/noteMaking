@@ -31,13 +31,8 @@ nav{
     }
 }
 .options{
-    margin: auto;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
     button{
         margin-right: 2em;
-        margin-top: 5em;
     }
 }
 .infoTable{
@@ -45,4 +40,12 @@ nav{
     justify-content: center;
     margin: auto;
     text-align: center;
+}
+.PlsVerifyEmail{
+    background-color: rgb(255, 49, 49);
+    color: #fff;
+    text-align: center;
+    h6{
+        padding: 5px;
+    }
 }

@@ -21,7 +21,7 @@ export class HeadderComponent implements OnInit {
       Swal.fire({
         title: '<strong><u>Profile</u></strong>',
         icon: 'info',
-        html:`<table class="infoTable">
+        html: `<table class="infoTable">
         <tr>
         <td>
         Name
@@ -50,6 +50,9 @@ export class HeadderComponent implements OnInit {
   }
   ngOnInit(): void {
     this.auth.user.subscribe((dta) => {this.user = dta; });
+    if (this.user){
+    this.route.navigate(['home']);
+   }
   }
   goTo = (routeName: string) => {
 this.route.navigate([routeName]);
