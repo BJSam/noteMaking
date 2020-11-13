@@ -15,6 +15,7 @@ import {ReactiveFormsModule} from '@angular/forms';
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
+import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 @NgModule({
   declarations: [
     AppComponent,
@@ -33,6 +34,7 @@ import { HomeComponent } from './home/home.component';
     AngularFireAuthModule,
     ReactiveFormsModule,
     FormsModule,
+    CKEditorModule
   ],
   providers: [],
   bootstrap: [AppComponent]

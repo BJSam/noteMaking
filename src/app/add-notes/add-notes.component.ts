@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AngularFirestore } from '@angular/fire/firestore';
 import {FbserviceService} from '../services/fbservice.service';
 import Swal from 'sweetalert2';
+import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 @Component({
   selector: 'app-add-notes',
   templateUrl: './add-notes.component.html',
@@ -10,10 +11,14 @@ import Swal from 'sweetalert2';
 })
 export class AddNotesComponent implements OnInit {
   form: FormGroup;
+  public Editor = ClassicEditor;
+  public config = {
+    placeholder: 'Type the your notes here!'
+}
   constructor(public formbuilder: FormBuilder,  private firestore: AngularFirestore, public fb: FbserviceService) {
     this.form = formbuilder.group({
       title: ['', Validators.required],
-      notes: ['', Validators.required]
+      notes: ['', Validators.required],
   });
   }
  Toast = Swal.mixin({
@@ -56,8 +61,7 @@ export class AddNotesComponent implements OnInit {
    }
   }
   onSubmit = () => {
-    console.log({...this.form.value, date: new Date()});
-    
+    console.log({...this.form.value, date: new Date()});    
     Swal.fire({
       title: 'adding notes',
       text: 'Please wait',

@@ -6,3 +6,7 @@
     justify-content: center;
     margin-top: 5em;
 }
+:host ::ng-deep .ck-editor__editable_inline {
+    min-height: 250px;
+    margin-bottom: 1em;
+}
