@@ -16,9 +16,6 @@
 </div>
 <div *ngIf="!fb.user || !fb.fetchedNotes" class="nocards">
   <div *ngIf="!fb.user" style="margin: auto; text-align: center; margin-top: 2em;" class="pleaselogin">
-  <h1>Please login</h1>
-  </div>
-  <div style="margin: auto; text-align: center;" *ngIf="!fb.fetchedNotes && fb.user" class="NOcards">
-  No Cards found
+    <h1 style="cursor: pointer;" (click)="fb.LoginWithGooogle()">Please login with Google</h1>
   </div>
   </div>
