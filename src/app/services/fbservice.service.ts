@@ -5,6 +5,7 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
 import { async } from '@angular/core/testing';
+import { error } from 'console';
 @Injectable({
   providedIn: 'root',
 })
@@ -103,7 +104,13 @@ export class FbserviceService {
       .catch((err) => {
         console.log('Something went wrong:', err.message);
         Swal.close();
-        Swal.fire('Oops...', 'Login Failed', 'error');
+        Swal.fire({
+          icon: "error",
+          title:"failed to signup",
+          text: err.message
+         
+          
+        });
       });
   }
   resendVerificationMail = () => {
