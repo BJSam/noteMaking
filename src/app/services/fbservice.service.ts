@@ -43,7 +43,7 @@ export class FbserviceService {
     toast: true,
     position: 'top-end',
     showConfirmButton: false,
-    timer: 3000,
+    timer: 5000,
     timerProgressBar: true,
     didOpen: (toast) => {
       toast.addEventListener('mouseenter', Swal.stopTimer);
@@ -120,7 +120,7 @@ export class FbserviceService {
           Swal.close()
           this.Toast.fire({
             icon: 'success',
-            title: 'Sent mail',
+            title: 'Sent mail, please reload page',
           });
         }).catch(e=>{
           Swal.close();
@@ -147,7 +147,7 @@ export class FbserviceService {
         Swal.fire({
           icon: 'error',
           title: 'login failed',
-          html: e.message,
+          text: e.message,
         });
       });
   };
