@@ -1,9 +1,16 @@
 <div class="main">
+  
     <div *ngFor="let item of fbs.fetchedNotes" class="card" style="width: 18rem;">
         <div class="card-body">
           <h5 class="card-title"><strong><u>{{item.title}}</u></strong></h5>
-          <p class="card-text">{{item.notes}}</p>
-          <p class="card-text"><small class="text-muted">{{getDate(item.date.seconds)}}</small></p>
+          <div class="notesDisply" [innerHTML]="item.notes"></div>
+          <div class="cardfooter">
+            <p class="card-text"><small style="color: #fff;" class="text">{{getDate(item.date.seconds) |date:'medium'}}</small></p>
+           <div class="options">
+            <img (click)="editData(item.id)" src="../../assets/img/edit.svg" alt="edit">
+            <img (click)="this.fbs.deleteEditRecord(item.id,'delete')" src="../../assets/img/delete.svg" alt="edit">
+           </div>
+          </div>         
         </div>        
       </div>
 </div>

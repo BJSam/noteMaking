@@ -7,8 +7,9 @@ import { RegisterComponent } from './register/register.component';
 import { ShowNotesComponent } from './show-notes/show-notes.component';
 
 const routes: Routes = [
+ 
   {
-    path:'',
+    path: '',
     redirectTo: 'register', pathMatch: 'full'
   },
   {

@@ -1,5 +1,8 @@
 <div *ngIf="fb.user" class="main">
-    <form class="Notesfrom" [formGroup]="form" (ngSubmit)="onSubmit()" >
+  <div class="headding">
+    <h3>{{this.userId$ ? "Edit Notes":"Add Notes" }}</h3>
+  </div>
+    <form class="Notesfrom" [formGroup]="form" (ngSubmit)="onSubmit(this.fetchedNotesId)" >
         <div class="form-group">
           <label for="exampleFormControlInput1">Title</label>
           <input type="text" formControlName="title" class="form-control" id="exampleFormControlInput1"   required placeholder="Notes Title">
@@ -10,7 +13,7 @@
           <label for="exampleFormControlTextarea1">Notes</label>
           <!-- <textarea formControlName="notes" class="form-control" #notesDetails  required id="exampleFormControlTextarea1" rows="3"></textarea> -->
          <ckeditor id="exampleFormControlTextarea1"  [editor]="Editor" data="<p>Hello, world!</p>"  required formControlName="notes"></ckeditor>
-         <button class="btn btn-primary" [disabled]="!form.valid" type="submit">Add notes</button>
+         <button class="btn btn-primary" [disabled]="!form.valid" type="submit">{{this.userId$ ? "Edit Notes":"Add Notes"}}</button>
       </form>
 </div>
 <div *ngIf="!fb.user || !fb.fetchedNotes" class="nocards">

@@ -13,7 +13,7 @@ export class HeadderComponent implements OnInit {
   constructor(private auth: AngularFireAuth, public fb: FbserviceService, public route: Router  ) { }
   Logout = () => {
     if (this.user){
-      this.auth.signOut().then(res => {console.log(res); alert('loggedOut'); });
+      this.auth.signOut().then(res => {console.log(res); alert('loggedOut');  this.route.navigate(['home']);});
     }
    }
   ShowProfileDetails = () => {

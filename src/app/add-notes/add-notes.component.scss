@@ -1,12 +1,18 @@
 .Notesfrom{
    max-width: 20em;
+   align-self: center;
 }
 .main{
     display: flex;
+    flex-direction: column;
     justify-content: center;
     margin-top: 5em;
+    .headding{
+        margin: auto;
+    }
 }
 :host ::ng-deep .ck-editor__editable_inline {
-    min-height: 250px;
+    height: 250px;
+    overflow-y: auto;
     margin-bottom: 1em;
 }

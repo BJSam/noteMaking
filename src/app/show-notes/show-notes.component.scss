@@ -11,5 +11,29 @@
         .card-title{
             text-align: center;
         }
+        .notesDisply{
+            height: 10em;
+            overflow-y: auto;
+            background-color: #fff;
+            border-radius: 5px;
+            margin-bottom: 1em;
+            
+        }
+        .cardfooter{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+            .options{
+                display: flex;
+                justify-content: space-evenly;
+                width: 30%;
+                img{
+                    width: 1em;
+                    height: 1em;
+                    cursor: pointer;
+                }
+            }
+            
+        }
     }    
 }
