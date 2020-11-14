@@ -1,3 +1,4 @@
+import { StudentDetailsComponent } from './student-details/student-details.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AddNotesComponent } from './add-notes/add-notes.component';
@@ -11,6 +12,10 @@ const routes: Routes = [
   {
     path: '',
     redirectTo: 'register', pathMatch: 'full'
+  },
+  {
+    path: 'student',
+    component: StudentDetailsComponent
   },
   {
     path: 'add_notes',

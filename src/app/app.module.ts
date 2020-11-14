@@ -16,6 +16,7 @@ import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
+import { StudentDetailsComponent } from './student-details/student-details.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,7 +25,8 @@ import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
     ShowNotesComponent,
     RegisterComponent,
     LoginComponent,
-    HomeComponent
+    HomeComponent,
+    StudentDetailsComponent
   ],
   imports: [
     BrowserModule,

@@ -12,7 +12,8 @@ export class FbserviceService {
   constructor(
     public Auth: AngularFireAuth,
     private db: AngularFirestore,
-    public route: Router
+    public route: Router,
+
   ) {
     Auth.onAuthStateChanged((user) => {
       this.user = user;
@@ -20,7 +21,7 @@ export class FbserviceService {
         if (user.emailVerified) {
           this.isuserVerified = true;
         } else {
-          this.isuserVerified = true;
+          this.isuserVerified = false;
         }
         this.route.navigate(['home']);
         this.db
@@ -33,7 +34,9 @@ export class FbserviceService {
     });
   }
   user: any;
+  role: any;
   fetchedNotes: any;
+  Students: any;
   pleaseWait = false;
   isuserVerified: boolean;
   Toast = Swal.mixin({
@@ -49,26 +52,7 @@ export class FbserviceService {
   });
 
 
-  accGet: any = (async (id) => {
-    try{
-     return await this.db
-     .collection(this.user.uid)
-     .ref.where('id', '==', id)
-     .get()
-     .then((doc) => {
-       if (doc.size === 1) {
-         doc.forEach((d) => {
-           console.log('from fb service');
-           console.log(d.data());
-           d.data();
-         });
-       }
-     });
-    }
-    catch (e){
-
-    }
-  })();
+  
   LoginWithGooogle: any = async () => {
     Swal.fire({
       title: 'logging you in',
@@ -102,7 +86,13 @@ export class FbserviceService {
     this.Auth.createUserWithEmailAndPassword(Mail, pass)
       .then((value) => {
         if (value.user) {
-          value.user.updateProfile({
+         const dt = {
+            uid: value.user.uid,
+            name: Name,
+            role: 'student'
+          }
+         this.addUserProfile(dt)
+         value.user.updateProfile({
             displayName: Name,
           });
         }
@@ -117,14 +107,34 @@ export class FbserviceService {
       });
   }
   resendVerificationMail = () => {
+    Swal.fire({
+      title: 'sending verification mail',
+      text: 'Please wait',
+      imageUrl: '../../assets/img/Spinner-1s-200px.gif',
+      showConfirmButton: false,
+      allowOutsideClick: false,
+    });
     this.Auth.currentUser.then((user) => {
-      if (!user.emailVerified) {
+      if (!user.emailVerified && !this.user.emailVerified) {
         user.sendEmailVerification().then((rs) => {
+          Swal.close()
           this.Toast.fire({
             icon: 'success',
-            title: 'Signed in successfully',
+            title: 'Sent mail',
           });
+        }).catch(e=>{
+          Swal.close();
+          Swal.fire({
+            icon: "error",
+            title:"Failed to send verification mail",
+            text:e.message
+          })
         });
+      }
+      else{
+        if(this.user.emailVerified){
+          this.isuserVerified = true;
+        }
       }
     });
   };
@@ -164,7 +174,40 @@ export class FbserviceService {
       title: 'Deleted',
     });
   }
- 
-
+ addUserProfile =({uid,name,role})=>{
+  this.db
+  .collection("Users").add({
+    Uid:uid,
+    Name:name,
+    Role:role
+  })
+ }
+getRole = async () => {
+ await this.db.collection('Users').ref.where('Role','==','teacher').get().then(doc => {
+    doc.forEach(async (d) => {
+       if(d.data().Uid === this.user.uid){
+         this.role = 'teacher';
+         await this.db
+         .collection('Users')
+         .valueChanges()
+         .subscribe(async (dt) => {
+           console.log(dt)
+           this.Students = dt.filter((s:any)=>s.Role !== 'teacher');
+         });
+       }
+       else{
+         this.role = 'student';
+       }
+      });
+  }).catch(e => {console.log(e);});
+}
+getNotes = async (id)=>{
+ await this.db
+  .collection(id)
+  .valueChanges()
+  .subscribe(async (dt) => {
+    return dt;
+  });
+}
 }
 

@@ -1,0 +1,15 @@
+<div class="main" *ngIf="this.notes">  
+    <div *ngFor="let item of this.notes" class="card" style="width: 18rem;">
+        <div class="card-body">
+          <h5 class="card-title"><strong><u>{{item.title}}</u></strong></h5>
+          <div class="notesDisply" [innerHTML]="item.notes"></div>
+          <div class="cardfooter">
+            <p class="card-text"><small style="color: #fff;" class="text">{{getDate(item.date.seconds) |date:'medium'}}</small></p>
+          
+          </div>         
+        </div>        
+      </div>
+</div>
+<div *ngIf="this.notes && this.notes.length ===0">
+    <h1>Notes Not Found</h1>
+</div>

@@ -1,14 +1,17 @@
 <nav class="navbar navbar-expand-lg">
     <a class="navbar-brand" href="#">Note Making</a>   
       <div class="navContent">
-        <div class="options nav-item" *ngIf="fb.user">
+        <div class="options nav-item" *ngIf="fb.user && this.fb.role!=='teacher'">
           <button type="button" (click)="goTo('add_notes')" [ngClass]="this.route.url === '/add_notes'? 'btn btn-primary':'btn btn-secondary'">Add Notes</button>
           <button type="button" (click)="goTo('show_notes')" [ngClass]="this.route.url === '/show_notes'? 'btn btn-primary':'btn btn-secondary'">Show Notes <span class="bdg badge badge-light">{{this.fb.fetchedNotes && this.fb.fetchedNotes.length}}</span></button>
        </div>
+       <div style="margin-right: 2em;" class="nav-item" *ngIf="fb.user && this.fb.role ==='teacher' && this.fb.Students">
+      <h4>Total number of students: {{this.fb.Students.length}}</h4> 
+      </div>
            <img class="nav-item" (click)="fb.LoginWithGooogle()" title="login with google account"  [hidden]="user!=null" src="../../assets//img/icons8-google.svg" alt="google login">
         <img class="nav-item" (click)="Logout()" title="logout" [hidden]="user==null" src="../../assets//img/logout.svg" alt="logout">
     <div title="profile" [hidden]="user==null" (click)="ShowProfileDetails()" class="nav-item imgConn">
-        <img [src]="fb.user && fb.user.photoURL" alt="profile">
+        <img src="../../assets/img/blank-profile-picture-973460_640.png" alt="profile">
     </div>  
     </div>    
   </nav>
