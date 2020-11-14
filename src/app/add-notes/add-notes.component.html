@@ -9,9 +9,7 @@
         </div>
           <label for="exampleFormControlTextarea1">Notes</label>
           <!-- <textarea formControlName="notes" class="form-control" #notesDetails  required id="exampleFormControlTextarea1" rows="3"></textarea> -->
-      
-           
-        <ckeditor id="exampleFormControlTextarea1" required formControlName="notes" [editor]="Editor" [config]="config" ></ckeditor>
+         <ckeditor id="exampleFormControlTextarea1"  [editor]="Editor" data="<p>Hello, world!</p>"  required formControlName="notes"></ckeditor>
          <button class="btn btn-primary" [disabled]="!form.valid" type="submit">Add notes</button>
       </form>
 </div>

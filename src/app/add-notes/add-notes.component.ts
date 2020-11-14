@@ -61,7 +61,7 @@ export class AddNotesComponent implements OnInit {
    }
   }
   onSubmit = () => {
-    console.log({...this.form.value, date: new Date()});    
+    console.log({...this.form.value, date: new Date()});
     Swal.fire({
       title: 'adding notes',
       text: 'Please wait',
