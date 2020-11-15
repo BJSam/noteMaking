@@ -20,7 +20,7 @@
                 <label for="exampleFormControlTextarea1">Re-enter Password</label>
                 <input type="text" formControlName="repass" class="form-control" #notesDetails placeholder="@myP@$$" required id="repass" >
             </div>
-            <button class="btn btn-primary" [disabled]="!formRegister.valid" type="submit">Submit form</button>
+            <button class="btn btn-primary" [disabled]="!formRegister.valid" type="submit">Register</button>
             <p (click)="this.route.navigate(['login'])" style="cursor: pointer; color: #fff;">Already registered? Login</p>
           </form>
     </div>

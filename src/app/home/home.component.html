@@ -1,4 +1,5 @@
 <div style="display: flex;justify-content: center;" class="main">
+   
     <div class="options" *ngIf="fb.user && fb.role !== 'teacher'">
         <button type="button" (click)="goTo('add_notes')" class="btn btn-primary">Add Notes</button>
         <button type="button" (click)="goTo('show_notes')" class="btn btn-primary">Show Notes <span class="bdg badge badge-light">{{this.fb.fetchedNotes && this.fb.fetchedNotes.length}}</span></button>

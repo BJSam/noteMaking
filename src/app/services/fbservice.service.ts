@@ -73,13 +73,13 @@ export class FbserviceService {
   };
   registerWithMailPass = ({ Name, Mail, pass }) => {
     Swal.fire({
-      title: 'logging you in',
+      title: 'Registering',
       text: 'Please wait',
       imageUrl: '../../assets/img/Spinner-1s-200px.gif',
       showConfirmButton: false,
       allowOutsideClick: false,
     });
-    this.Auth.createUserWithEmailAndPassword(Mail, pass)
+    this.Auth.createUserWithEmailAndPassword(Mail.trim(), pass)
       .then((value) => {
         if (value.user) {
           const dt = {
@@ -141,11 +141,20 @@ export class FbserviceService {
     });
   };
   LoginWithEmailPass = ({ Mail, pass }) => {
-    this.Auth.signInWithEmailAndPassword(Mail, pass)
+    Swal.fire({
+      title: 'logging you in',
+      text: 'Please wait',
+      imageUrl: '../../assets/img/Spinner-1s-200px.gif',
+      showConfirmButton: false,
+      allowOutsideClick: false,
+    });
+    this.Auth.signInWithEmailAndPassword(Mail.trim(), pass)
       .then((res) => {
+        Swal.close()
         Swal.fire('Good to see you', 'Login Success', 'success');
       })
       .catch((e) => {
+        Swal.close()
         Swal.fire({
           icon: 'error',
           title: 'login failed',

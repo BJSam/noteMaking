@@ -11,7 +11,7 @@
               <label for="exampleFormControlTextarea1">Password</label>
               <input type="password" formControlName="pass" class="form-control" #notesDetails placeholder="@myP@$$" required id="pass">
             </div>
-            <button class="btn btn-primary" [disabled]="!formRegister.valid" type="submit">Submit form</button>
+            <button class="btn btn-primary" [disabled]="!formRegister.valid" type="submit">Login</button>
             <p (click)="this.route.navigate(['register'])" style="cursor: pointer; color: #fff;">Not registered yet? Register</p>
           </form>
     </div>
