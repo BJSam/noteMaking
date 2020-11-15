@@ -4,8 +4,6 @@ import * as firebase from 'firebase/app';
 import { AngularFirestore } from '@angular/fire/firestore';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
-import { async } from '@angular/core/testing';
-import { error } from 'console';
 @Injectable({
   providedIn: 'root',
 })
@@ -13,8 +11,7 @@ export class FbserviceService {
   constructor(
     public Auth: AngularFireAuth,
     private db: AngularFirestore,
-    public route: Router,
-
+    public route: Router
   ) {
     Auth.onAuthStateChanged((user) => {
       this.user = user;
@@ -52,8 +49,6 @@ export class FbserviceService {
     },
   });
 
-
-  
   LoginWithGooogle: any = async () => {
     Swal.fire({
       title: 'logging you in',
@@ -75,7 +70,7 @@ export class FbserviceService {
         Swal.close();
         Swal.fire('Oops...', 'Login Failed', 'error');
       });
-  }
+  };
   registerWithMailPass = ({ Name, Mail, pass }) => {
     Swal.fire({
       title: 'logging you in',
@@ -87,13 +82,13 @@ export class FbserviceService {
     this.Auth.createUserWithEmailAndPassword(Mail, pass)
       .then((value) => {
         if (value.user) {
-         const dt = {
+          const dt = {
             uid: value.user.uid,
             name: Name,
-            role: 'student'
-          }
-         this.addUserProfile(dt)
-         value.user.updateProfile({
+            role: 'student',
+          };
+          this.addUserProfile(dt);
+          value.user.updateProfile({
             displayName: Name,
           });
         }
@@ -105,14 +100,12 @@ export class FbserviceService {
         console.log('Something went wrong:', err.message);
         Swal.close();
         Swal.fire({
-          icon: "error",
-          title:"failed to signup",
-          text: err.message
-         
-          
+          icon: 'error',
+          title: 'failed to signup',
+          text: err.message,
         });
       });
-  }
+  };
   resendVerificationMail = () => {
     Swal.fire({
       title: 'sending verification mail',
@@ -123,23 +116,25 @@ export class FbserviceService {
     });
     this.Auth.currentUser.then((user) => {
       if (!user.emailVerified && !this.user.emailVerified) {
-        user.sendEmailVerification().then((rs) => {
-          Swal.close()
-          this.Toast.fire({
-            icon: 'success',
-            title: 'Sent mail, please reload page',
-          });
-        }).catch(e=>{
-          Swal.close();
-          Swal.fire({
-            icon: "error",
-            title:"Failed to send verification mail",
-            text:e.message
+        user
+          .sendEmailVerification()
+          .then((rs) => {
+            Swal.close();
+            this.Toast.fire({
+              icon: 'success',
+              title: 'Sent mail, please reload page',
+            });
           })
-        });
-      }
-      else{
-        if(this.user.emailVerified){
+          .catch((e) => {
+            Swal.close();
+            Swal.fire({
+              icon: 'error',
+              title: 'Failed to send verification mail',
+              text: e.message,
+            });
+          });
+      } else {
+        if (this.user.emailVerified) {
           this.isuserVerified = true;
         }
       }
@@ -180,41 +175,45 @@ export class FbserviceService {
       icon: 'success',
       title: 'Deleted',
     });
-  }
- addUserProfile =({uid,name,role})=>{
-  this.db
-  .collection("Users").add({
-    Uid:uid,
-    Name:name,
-    Role:role
-  })
- }
-getRole = async () => {
- await this.db.collection('Users').ref.where('Role','==','teacher').get().then(doc => {
-    doc.forEach(async (d) => {
-       if(d.data().Uid === this.user.uid){
-         this.role = 'teacher';
-         await this.db
-         .collection('Users')
-         .valueChanges()
-         .subscribe(async (dt) => {
-           console.log(dt)
-           this.Students = dt.filter((s:any)=>s.Role !== 'teacher');
-         });
-       }
-       else{
-         this.role = 'student';
-       }
+  };
+  addUserProfile = ({ uid, name, role }) => {
+    this.db.collection('Users').add({
+      Uid: uid,
+      Name: name,
+      Role: role,
+    });
+  };
+  getRole = async () => {
+    await this.db
+      .collection('Users')
+      .ref.where('Role', '==', 'teacher')
+      .get()
+      .then((doc) => {
+        doc.forEach(async (d) => {
+          if (d.data().Uid === this.user.uid) {
+            this.role = 'teacher';
+            await this.db
+              .collection('Users')
+              .valueChanges()
+              .subscribe(async (dt) => {
+                console.log(dt);
+                this.Students = dt.filter((s: any) => s.Role !== 'teacher');
+              });
+          } else {
+            this.role = 'student';
+          }
+        });
+      })
+      .catch((e) => {
+        console.log(e);
       });
-  }).catch(e => {console.log(e);});
+  };
+  getNotes = async (id) => {
+    await this.db
+      .collection(id)
+      .valueChanges()
+      .subscribe(async (dt) => {
+        return dt;
+      });
+  };
 }
-getNotes = async (id)=>{
- await this.db
-  .collection(id)
-  .valueChanges()
-  .subscribe(async (dt) => {
-    return dt;
-  });
-}
-}
-

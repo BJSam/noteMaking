@@ -1,5 +1,10 @@
-<div class="main" *ngIf="this.notes">  
-    <div *ngFor="let item of this.notes" class="card" style="width: 18rem;">
+<div class="main" *ngIf="this.notes && this.Name">  
+   <div class="headder">
+     <img src="../../assets/img/icons8-back-100.png" title="back" (click)="this.route.navigateByUrl('/home')" alt="back">
+    <h3 style="margin: auto;">{{this.Name}}</h3>
+   </div>
+    <div class="cards">
+      <div *ngFor="let item of this.notes" style="margin-left: 5em;" class="card" style="width: 18rem;">
         <div class="card-body">
           <h5 class="card-title"><strong><u>{{item.title}}</u></strong></h5>
           <div class="notesDisply" [innerHTML]="item.notes"></div>
@@ -9,7 +14,8 @@
           </div>         
         </div>        
       </div>
+    </div>
 </div>
-<div *ngIf="this.notes && this.notes.length ===0">
-    <h1>Notes Not Found</h1>
+<div *ngIf="this.notes && this.notes.length ===0 && this.Name">
+    <h1>Notes Not Found in {{this.Name}}'s database</h1>
 </div>

@@ -19,7 +19,7 @@ export class HomeComponent implements OnInit {
   goTo = (routeName: string) => {
     this.route.navigate([routeName]);
       }
-    gotostudent =(uid)=>{
-      this.route.navigate(['student',{uid}])
+    gotostudent =(uid,name)=>{
+      this.route.navigate(['student',{uid,name}])
     }
 }
